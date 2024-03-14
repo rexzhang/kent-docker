@@ -24,3 +24,5 @@ WORKDIR /app
 EXPOSE 8000
 
 CMD ["kent-server", "run", "--host", "0.0.0.0", "--port", "8000"]
+
+LABEL org.opencontainers.image.description DESCRIPTION
