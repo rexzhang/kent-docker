@@ -1,1 +1,1 @@
-kent==1.2.0
+-r requirements.d/basic.txt
