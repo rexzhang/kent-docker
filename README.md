@@ -11,9 +11,9 @@
 ## Quick Start
 
 ```shell
-docker pull ray1ex/kent
+docker pull ghcr.io/rexzhang/kent:latest
 
 docker run -dit --restart unless-stopped \
  -p 8000:8000 \
- --name kent ray1ex/kent
+ --name kent ghcr.io/rexzhang/kent:latest
 ```
