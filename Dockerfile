@@ -4,17 +4,17 @@ ARG ENV
 ENV TZ="Asia/Shanghai"
 
 RUN if [ "$ENV" = "rex" ]; then echo "Change depends" \
-    && pip config set global.index-url http://192.168.200.26:13141/root/pypi/+simple \
-    && pip config set install.trusted-host 192.168.200.26 \
+    && pip config set global.index-url https://devpi.h.rexzhang.com/root/pypi/+simple \
+    && pip config set install.trusted-host devpi.h.rexzhang.com \
     && sed -i 's/dl-cdn.alpinelinux.org/mirrors.tuna.tsinghua.edu.cn/g' /etc/apk/repositories \
     ; fi
 
-COPY requirements.txt /app/requirements.txt
+COPY requirements.d /app/requirements.d
 
 RUN \
     # install depends
     apk add --no-cache --virtual .build-deps build-base libffi-dev \
-    && pip install --no-cache-dir -r /app/requirements.txt \
+    && pip install --no-cache-dir -r /app/requirements.d/basic.txt \
     && apk del .build-deps \
     && find /usr/local/lib/python*/ -type f -name '*.py[cod]' -delete \
     && find /usr/local/lib/python*/ -type d -name "__pycache__" -delete
